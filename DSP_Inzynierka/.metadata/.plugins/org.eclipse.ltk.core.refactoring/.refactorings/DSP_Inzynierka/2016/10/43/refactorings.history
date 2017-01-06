@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;DSP_Inzynierka/Interface.c&apos; to &apos;EffectsList.c&apos;" description="Rename resource &apos;Interface.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Interface.c" name="EffectsList.c" stamp="1477818822458" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;DSP_Inzynierka/Interface.h&apos; to &apos;EffectsList.h&apos;" description="Rename resource &apos;Interface.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Interface.h" name="EffectsList.h" stamp="1477818842665" updateReferences="true"/>
+</session>

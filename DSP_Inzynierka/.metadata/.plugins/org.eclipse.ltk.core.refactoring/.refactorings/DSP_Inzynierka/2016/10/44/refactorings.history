@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;DSP_Inzynierka/Flanger_Chorus/Flanger_Choru_Interface.c&apos; to &apos;Flanger_Chorus_Interface.c&apos;" description="Rename resource &apos;Flanger_Choru_Interface.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Flanger_Chorus/Flanger_Choru_Interface.c" name="Flanger_Chorus_Interface.c" stamp="1477930247891" updateReferences="true"/>
+</session>

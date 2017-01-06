@@ -1,0 +1,57 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+CMD_SRCS += \
+../C5535.cmd 
+
+C_SRCS += \
+../Chorus.c \
+../delay.c \
+../delay2.c \
+../distortion.c \
+../flanger.c \
+../main.c 
+
+OBJS += \
+./Chorus.obj \
+./delay.obj \
+./delay2.obj \
+./distortion.obj \
+./flanger.obj \
+./main.obj 
+
+C_DEPS += \
+./Chorus.d \
+./delay.d \
+./delay2.d \
+./distortion.d \
+./flanger.d \
+./main.d 
+
+C_DEPS__QUOTED += \
+"Chorus.d" \
+"delay.d" \
+"delay2.d" \
+"distortion.d" \
+"flanger.d" \
+"main.d" 
+
+OBJS__QUOTED += \
+"Chorus.obj" \
+"delay.obj" \
+"delay2.obj" \
+"distortion.obj" \
+"flanger.obj" \
+"main.obj" 
+
+C_SRCS__QUOTED += \
+"../Chorus.c" \
+"../delay.c" \
+"../delay2.c" \
+"../distortion.c" \
+"../flanger.c" \
+"../main.c" 
+
+

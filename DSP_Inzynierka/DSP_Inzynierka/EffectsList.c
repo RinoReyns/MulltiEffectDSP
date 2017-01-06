@@ -1,0 +1,925 @@
+/*
+ * Interface.c
+ *
+ *  Created on: 29 paŸ 2016
+ *      Author: £ukasz Pindor
+ */
+
+#include "oled.h"
+#include "pushbuttons.h"
+#include "stdio.h"
+#include <stdlib.h>
+#include <string.h>
+#include "Delay/delay.h"
+#include "Delay2/delay2.h"
+#include "Distortion/distortion.h"
+#include "Flanger_Chorus/flanger.h"
+#include "Flanger_Chorus/Chorus.h"
+#include "Effects_Structures.h"
+#include "Delay/delay.h"
+#include "bool_type.h"
+#include "usbstk5515.h"
+#include "Tremolo/tremolo.h"
+#include "Tremolo/lfo_type.h"
+
+
+char krok_interface=0;
+char poprzedni_krok_interface=0;
+char options_counter=0;
+char one_reset=0;
+
+
+void init_List()
+{
+	reset_button_value();
+	krok_interface=0;
+	poprzedni_krok_interface=0;
+}
+
+char reset()
+{
+	krok_interface=0;
+	poprzedni_krok_interface=0;
+	reset_button_value();
+	one_reset=0;
+	return 0;
+}
+
+void Display_Function(char * napi1, char *napi2)
+{
+	/// mniejszy malloc, bo char jest mniejszy duuuzo
+	char *napis3=(char *) malloc(15);
+	char *napis4=(char *) malloc(15);
+	strcpy(napis3, napi1);
+	strcpy(napis4, napi2);
+	oled_display_message(napis3,napis4);
+	free(napis3);
+	free(napis4);
+}
+
+
+
+
+char list_Of_Effects()
+{
+
+	krok_interface = pushbuttons_read(6);
+//////////////// sprawdzanie zatwierdzania
+	if((krok_interface==6) && (poprzedni_krok_interface==1))
+		return poprzedni_krok_interface;
+
+	if(krok_interface<poprzedni_krok_interface )
+		if( (krok_interface!=1) || (poprzedni_krok_interface!=6))
+			return poprzedni_krok_interface;
+/////////////////////////
+
+	if(krok_interface != poprzedni_krok_interface)
+	{
+		if (krok_interface==1)
+		{
+			Display_Function("- delay         ","  delay2          ");
+			poprzedni_krok_interface = krok_interface;
+		}
+		else  if (krok_interface==2)
+		{
+			Display_Function("- delay2            ","  flanger          ");
+			poprzedni_krok_interface = krok_interface;
+		}
+		else  if (krok_interface==3)
+		{
+			Display_Function("- flanger          ","  chorus          ");
+			poprzedni_krok_interface = krok_interface;
+		}
+		else  if (krok_interface==4)
+		{
+			Display_Function("- chorus          ","  distortion          ");
+			poprzedni_krok_interface = krok_interface;
+		}
+		else  if (krok_interface==5)
+		{
+			Display_Function("- distortion          ","  tremolo          ");
+			poprzedni_krok_interface = krok_interface;
+		}
+		else  if (krok_interface==6)
+		{
+			Display_Function("- tremolo          ","  delay          ");
+			poprzedni_krok_interface = krok_interface;
+		}
+	}
+
+	return 0;
+}
+
+char Delay_Interface(bool *state)
+{
+
+	krok_interface = pushbuttons_read(4);
+
+	if((krok_interface==4) && (poprzedni_krok_interface==1))
+		return poprzedni_krok_interface;
+
+		if(krok_interface<poprzedni_krok_interface )
+			if( (krok_interface!=1) || (poprzedni_krok_interface!=4))
+				return poprzedni_krok_interface;
+
+		if(krok_interface != poprzedni_krok_interface )
+		{
+			 if (krok_interface==1)
+			 {
+				 if(*state==false)
+					 Display_Function("- turn on          ","  delay time        ");
+				 else if(*state==true)
+					 Display_Function("- turn off          ","  delay time        ");
+				 poprzedni_krok_interface = krok_interface;
+
+			 }
+			 else if (krok_interface==2)
+			 {
+				 	 Display_Function("- delay time          ","  delay volume          ");
+				 	 poprzedni_krok_interface = krok_interface;
+			 }
+			 else if (krok_interface==3)
+			 {
+				 	 	 Display_Function("- delay volume          ","  back             ");
+				 	 	 poprzedni_krok_interface = krok_interface;
+			 }
+
+			 else if (krok_interface==4)
+			 {
+				 if(*state==false)
+					 Display_Function("- back            ","  turn on          ");
+				 else if(*state==true)
+					 Display_Function("- back            ","  turn off          ");
+				 poprzedni_krok_interface = krok_interface;
+			 }
+
+		}
+
+		return 0;
+}
+
+char Delay2_Interface(bool* state)
+{
+
+	krok_interface= pushbuttons_read(6);
+
+	if((krok_interface==6) && (poprzedni_krok_interface==1))
+		return poprzedni_krok_interface;
+
+		if(krok_interface<poprzedni_krok_interface )
+			if( (krok_interface!=1) || (poprzedni_krok_interface!=6))
+				return poprzedni_krok_interface;
+
+		if(krok_interface != poprzedni_krok_interface)
+		{
+			 if (krok_interface==1)
+			 {
+				 if(*state==false)
+					 Display_Function("- turn on          ","  delay time        ");
+				 else if(*state==true)
+					 Display_Function("- turn off          ","  delay time        ");
+				 poprzedni_krok_interface = krok_interface;
+			 }
+
+			 else if (krok_interface==2)
+			 {
+				 Display_Function("- delay time          ","  feedforward          ");
+				 poprzedni_krok_interface = krok_interface;
+
+			 }
+			 else if (krok_interface==3)
+			 {
+				 Display_Function("- feedforward          ","  blend             ");
+				 poprzedni_krok_interface = krok_interface;
+
+			 }
+			 else if (krok_interface==4)
+			 {
+				 Display_Function("- blend          ","  feedbackward             ");
+				 poprzedni_krok_interface = krok_interface;
+
+			 }
+
+			 else if (krok_interface==5)
+			 {
+				 Display_Function("- feedbackward          ","  back             ");
+				 poprzedni_krok_interface = krok_interface;
+			 }
+			 else if (krok_interface==6)
+			 {
+				 if(*state==false)
+					 Display_Function("- back            ","  turn on          ");
+				 else if(*state==true)
+					 Display_Function("- back            ","  turn off          ");
+				 poprzedni_krok_interface = krok_interface;
+			 }
+
+		}
+		return 0;
+}
+char  Flanger_Chorus_Interface(char* effect_Number,bool* state)
+{
+
+	krok_interface= pushbuttons_read(6);
+
+	if((krok_interface==6) && (poprzedni_krok_interface==1))
+		return poprzedni_krok_interface;
+
+	if(krok_interface<poprzedni_krok_interface )
+		if( (krok_interface!=1) || (poprzedni_krok_interface!=6))
+			return poprzedni_krok_interface;
+
+	if(krok_interface != poprzedni_krok_interface)
+	{
+		if (krok_interface==1)
+		{
+		 	 if(*state==false)
+			 	 Display_Function("- turn on          ","  delay time        ");
+		 	 else if(*state==true)
+			 	 Display_Function("- turn off          ","  delay time        ");
+		 	 poprzedni_krok_interface = krok_interface;
+
+		}
+		else if (krok_interface==2)
+		{
+		 	 Display_Function("- delay time          ","  lfo frequency        ");
+		 	 poprzedni_krok_interface = krok_interface;
+		}
+		else if (krok_interface==3)
+		{
+			Display_Function("- lfo frequency          ","  lfo amplitude          ");
+		 	 poprzedni_krok_interface = krok_interface;
+		}
+		else if (krok_interface==4)
+		{
+
+			if(*effect_Number==3)
+				Display_Function("- lfo amplitude          ","  flanger volume         ");
+			else if(*effect_Number==4)
+				Display_Function("- lfo amplitude          ","  chorus volume         ");
+			poprzedni_krok_interface = krok_interface;
+		}
+		else if (krok_interface==5)
+		{
+
+			if(*effect_Number==3)
+				Display_Function("- flanger volume          ","  back             ");
+			else if(*effect_Number==4)
+				Display_Function("- chorus volume          ","  back             ");
+			poprzedni_krok_interface = krok_interface;
+
+		}
+		else if (krok_interface==6)
+		{
+			if(*state==false)
+				Display_Function("- back            ","  turn on          ");
+			else if(*state==true)
+				Display_Function("- back            ","  turn off          ");
+			poprzedni_krok_interface = krok_interface;
+
+		}
+	}
+	return 0;
+}
+char Distorion_Interface(bool* state)
+{
+
+	krok_interface = pushbuttons_read(5);
+
+	if((krok_interface==5) && (poprzedni_krok_interface==1))
+		return poprzedni_krok_interface;
+
+		if(krok_interface<poprzedni_krok_interface )
+			if( (krok_interface!=1) || (poprzedni_krok_interface!=5))
+				return poprzedni_krok_interface;
+
+
+		if(krok_interface != poprzedni_krok_interface)
+		{
+			if (krok_interface==1)
+			{
+				if(*state==false)
+					Display_Function("- turn on          ","  gain level        ");
+				else if(*state==true)
+					Display_Function("- turn off          ","  gain level        ");
+				poprzedni_krok_interface = krok_interface;
+
+			}
+			else if (krok_interface==2)
+			{
+				Display_Function("- gain level          ","  mix        ");
+				poprzedni_krok_interface = krok_interface;
+
+			}
+			else if (krok_interface==3)
+			{
+				Display_Function("- mix              ","  volume   ");
+				poprzedni_krok_interface = krok_interface;
+
+			}
+			else if (krok_interface==4)
+			{
+				Display_Function("- volume             ","  back             ");
+				poprzedni_krok_interface = krok_interface;
+			}
+			else if (krok_interface==5)
+			{
+				if(*state==false)
+					Display_Function("- back            ","  turn on          ");
+				else if(*state==true)
+					Display_Function("- back            ","  turn off          ");
+				poprzedni_krok_interface = krok_interface;
+			}
+		}
+	return 0;
+}
+
+char Tremolo_Interface(bool* state)
+{
+
+	krok_interface = pushbuttons_read(5);
+
+	if((krok_interface==5) && (poprzedni_krok_interface==1))
+		return poprzedni_krok_interface;
+
+		if(krok_interface<poprzedni_krok_interface )
+			if( (krok_interface!=1) || (poprzedni_krok_interface!=5))
+				return poprzedni_krok_interface;
+
+
+		if(krok_interface != poprzedni_krok_interface)
+		{
+			if (krok_interface==1)
+			{
+				if(*state==false)
+					Display_Function("- turn on          ","  lfo frequency        ");
+				else if(*state==true)
+					Display_Function("- turn off          ","  lfo frequency        ");
+				poprzedni_krok_interface = krok_interface;
+
+			}
+			else if (krok_interface==2)
+			{
+				Display_Function("- lfo frequency          ","  modulation type        ");
+				poprzedni_krok_interface = krok_interface;
+
+			}
+			else if (krok_interface==3)
+			{
+				Display_Function("- modulation type        ","  volume              ");
+				poprzedni_krok_interface = krok_interface;
+
+			}
+			else if (krok_interface==4)
+			{
+				Display_Function("- volume                 ","  back             ");
+				poprzedni_krok_interface = krok_interface;
+			}
+			else if (krok_interface==5)
+			{
+				if(*state==false)
+					Display_Function("- back            ","  turn on          ");
+				else if(*state==true)
+					Display_Function("- back            ","  turn off          ");
+				poprzedni_krok_interface = krok_interface;
+			}
+		}
+	return 0;
+}
+char Tremolo_Modulation_Menu()
+{
+
+	krok_interface = pushbuttons_read(5);
+
+	if((krok_interface==5) && (poprzedni_krok_interface==1))
+		return poprzedni_krok_interface;
+
+		if(krok_interface<poprzedni_krok_interface )
+			if( (krok_interface!=1) || (poprzedni_krok_interface!=5))
+				return poprzedni_krok_interface;
+
+
+		if(krok_interface != poprzedni_krok_interface)
+		{
+			if (krok_interface==1)
+			{
+
+				Display_Function("- sinus          ","  square        ");
+				poprzedni_krok_interface = krok_interface;
+
+			}
+			else if (krok_interface==2)
+			{
+				Display_Function("- square           ","  saw        ");
+				poprzedni_krok_interface = krok_interface;
+
+			}
+			else if (krok_interface==3)
+			{
+				Display_Function("- saw        ","  triangle              ");
+				poprzedni_krok_interface = krok_interface;
+
+			}
+			else if (krok_interface==4)
+			{
+				Display_Function("- triangle                 ","  back             ");
+				poprzedni_krok_interface = krok_interface;
+			}
+			else if (krok_interface==5)
+			{
+
+				Display_Function("- back            ","  sinus          ");
+				poprzedni_krok_interface = krok_interface;
+			}
+		}
+	return -1;
+}
+
+
+
+char  Change_Parameter_Level()
+{
+
+	krok_interface = pushbuttons_read(3);
+
+	if((krok_interface==3) && (poprzedni_krok_interface==1))
+		return poprzedni_krok_interface;
+
+	if(krok_interface<poprzedni_krok_interface )
+		if( (krok_interface!=1) || (poprzedni_krok_interface!=3))
+			return poprzedni_krok_interface;
+	if(krok_interface != poprzedni_krok_interface)
+	{
+		if (krok_interface==1)
+		{
+			Display_Function("- up             ","  down           ");
+			poprzedni_krok_interface = krok_interface;
+		}
+		else if (krok_interface==2)
+		{
+			Display_Function("- down             ","  back             ");
+			poprzedni_krok_interface = krok_interface;
+
+		}
+		else if (krok_interface==3)
+		{
+			Display_Function("- back             ","  up               ");
+			poprzedni_krok_interface = krok_interface;
+		}
+	}
+	return -1;
+}
+
+
+
+bool  Local_Change_Parameter_Level(char* paremeter_value, kind_of_parameter kind, char* effect_Number)
+{
+
+	if(one_reset==0)
+	{
+		reset();
+		one_reset=Change_Parameter_Level();
+
+	}
+	else if(one_reset==-1)
+	{
+		one_reset=Change_Parameter_Level();
+		if(one_reset==3)
+		{
+			one_reset=reset();
+			options_counter=0;
+		}
+		if(one_reset!=-1)
+			init_List();
+	}
+	else
+	{
+///////// Up and down///////////////////////////////////////////////////
+		krok_interface = pushbuttons_read(40);
+		if(krok_interface>poprzedni_krok_interface )	// lepszy warunek
+		{
+			if(poprzedni_krok_interface==1 && krok_interface==40)
+			{
+				reset();
+				one_reset=-1;
+				return false;
+			}
+			char* changed_value=(char*)malloc(7);
+				*changed_value=*paremeter_value;
+
+			//////////// UP//////////////////////////////
+			if(one_reset==1 && krok_interface!=1 )
+			{
+				if(kind==ms)
+				{
+					if ((*effect_Number==3) && (*paremeter_value)<15 )
+						*paremeter_value=(*paremeter_value)+1;
+					else if ((*effect_Number==4) && (*paremeter_value)<25)
+						*paremeter_value=(*paremeter_value)+1;
+				}
+				else if(kind==frequency)
+				{
+					if ((*effect_Number==3 || *effect_Number==4) && (*paremeter_value)<30)
+						*paremeter_value=(*paremeter_value)+1;
+					else if (*effect_Number==6 && (*paremeter_value)<20)
+						*paremeter_value=(*paremeter_value)+1;
+				}
+
+				else if(kind==volume)
+				{
+					if((*paremeter_value)<100)
+						*paremeter_value=(*paremeter_value)+10;
+				}
+
+			}
+			////////////////////DOWN////////////////////
+				else if (one_reset==2  && krok_interface!=1 )
+				{
+					if(kind==ms)
+					{
+						if ((*effect_Number==3) && (*paremeter_value)!=0 )
+							*paremeter_value=(*paremeter_value)-1;
+						else if ((*effect_Number==4) && (*paremeter_value)>10)
+							*paremeter_value=(*paremeter_value)-1;
+					}
+					else if(kind==frequency)
+					{
+						if ((*effect_Number==3 || *effect_Number==4) && (*paremeter_value)!=0)
+							*paremeter_value=(*paremeter_value)-1;
+						else if (*effect_Number==6 && (*paremeter_value)>0)
+							*paremeter_value=(*paremeter_value)-1;
+					}
+					else if(kind==volume)
+					{
+						if((*paremeter_value)!=0)
+							*paremeter_value=(*paremeter_value)-10;
+					}
+				}
+
+			char *napis1=(char *) malloc(7);
+			if(kind==ms)
+				sprintf(napis1, "%4d ms             ", *paremeter_value); // ms ró¿ny w zale¿noœci od efektu
+			else if(kind==volume)
+				sprintf(napis1, "%4d              ", *paremeter_value);
+			else if(kind==frequency)
+				sprintf(napis1, "%4d Hz           ", (*paremeter_value));
+
+
+			oled_display_message(napis1,"                  ");
+			free(napis1);
+			poprzedni_krok_interface = krok_interface;
+
+			if(*changed_value!=*paremeter_value)
+			{
+				free(changed_value);
+				return true;
+			}
+			free(changed_value);
+		}
+		else if(krok_interface<poprzedni_krok_interface)
+			{
+				reset();
+				one_reset=-1;
+			}
+	}
+
+	return false;
+}
+
+bool  Local_Change_Parameter_Level_For_Delay(short int* paremeter_value)
+{
+
+	if(one_reset==0)
+	{
+		reset();
+		one_reset=Change_Parameter_Level();
+	}
+	else if(one_reset==-1)
+	{
+		one_reset=Change_Parameter_Level();
+		if(one_reset==3)
+		{
+			one_reset=reset();
+			options_counter=0;
+		}
+		if(one_reset!=-1)
+			init_List();
+	}
+	else
+	{
+///////// Up and down///////////////////////////////////////////////////
+		krok_interface = pushbuttons_read(71);
+		if(krok_interface>poprzedni_krok_interface )	// lepszy warunek
+		{
+			if(poprzedni_krok_interface==1 && krok_interface==71)
+			{
+				reset();
+				one_reset=-1;
+				return false;
+			}
+
+			short int* changed_value=(short int*)malloc(15);
+			*changed_value=*paremeter_value;
+
+			//////////// UP//////////////////////////////
+			if(one_reset==1 && krok_interface!=1 )
+				{
+					if((*paremeter_value)<630)
+					*paremeter_value=(*paremeter_value)+10;
+				}
+			////////////////////DOWN////////////////////
+				else if (one_reset==2  && krok_interface!=1 )
+				{
+					if((*paremeter_value)!=0)
+						*paremeter_value=(*paremeter_value)-10;
+				}
+			char *napis1=(char *) malloc(15);
+			sprintf(napis1, "%3d ms             ",(char) (*paremeter_value)); // ms ró¿ny w zale¿noœci od efektu
+			oled_display_message(napis1,"                  ");
+			free(napis1);
+			poprzedni_krok_interface = krok_interface;
+			if(*changed_value!=*paremeter_value)
+			{
+				free(changed_value);
+				return true;
+			}
+			free(changed_value);
+		}
+		else if(krok_interface<poprzedni_krok_interface)
+			{
+				reset();
+				one_reset=-1;
+			}
+	}
+	return false;
+}
+
+
+
+void on_off_function(bool* state)
+{
+	if(*state==false)
+		*state=true;
+	else if (*state==true)
+		*state=false;
+	reset();
+}
+
+
+
+char chosen_Effect(char* effect_Number)
+{
+	/*
+	 * 1-Delay
+	 * 2-Delay2
+	 * 3-Flanger
+	 * 4-Chorus
+	 * 5-Distortion
+	 * 6-Tremolo
+	*/
+	if(*effect_Number==1)
+	{
+		////////////////////////////// Delay/////////////////////////////////
+		if(one_reset==0)
+			options_counter=Delay_Interface(&delay_structure.On);// wybrana opcja
+		if(options_counter==4)
+			*effect_Number=reset();
+		else if(options_counter==1)
+		{
+			on_off_function(&delay_structure.On);
+			delay_init(&delay_structure.opoznienie);
+		}
+		else if(options_counter!=0 )
+		{
+			if(options_counter==2)
+			{
+				if(Local_Change_Parameter_Level_For_Delay(&delay_structure.opoznienie)==true)
+					delay_init(&delay_structure.opoznienie);
+			}
+			else if (options_counter==3)
+			{
+				if(Local_Change_Parameter_Level(&delay_structure.gain,volume,effect_Number)==true)
+					delay_init(&delay_structure.opoznienie);
+			}
+		}
+	}
+
+	else if(*effect_Number==2)
+	{
+		////////////////////////////// Delay2/////////////////////////////////
+		if(one_reset==0)
+			options_counter=Delay2_Interface(&delay2_structure.On);
+		if(options_counter==6)
+			*effect_Number=reset();
+		else if(options_counter==1)
+		{
+			on_off_function(&delay2_structure.On);
+			delay2_init(&delay2_structure.opoznienie);
+		}
+		else if(options_counter!=0 )
+		{
+			if(options_counter==2)
+			{
+
+				if(Local_Change_Parameter_Level_For_Delay(&delay2_structure.opoznienie)==true)
+					delay2_init(&delay2_structure.opoznienie);
+			}
+			else if (options_counter==3)
+			{
+				if(Local_Change_Parameter_Level(&delay2_structure.FF,volume,effect_Number)==true)
+					delay2_init(&delay2_structure.opoznienie);
+			}
+			else if (options_counter==4)
+			{
+				if(Local_Change_Parameter_Level(&delay2_structure.BL,volume,effect_Number)==true)
+					delay2_init(&delay2_structure.opoznienie);
+			}
+			else if (options_counter==5)
+			{
+				if(Local_Change_Parameter_Level(&delay2_structure.FB,volume,effect_Number)==true)
+					delay2_init(&delay2_structure.opoznienie);
+			}
+		}
+	}
+
+	else if(*effect_Number==3 || *effect_Number==4 )
+	{////////////////////////////// Flanger & Chorus/////////////////////////////////
+		if(one_reset==0)
+		{
+			if(*effect_Number==3)
+				options_counter= Flanger_Chorus_Interface(effect_Number,&flanger_structure.On);
+			else if(*effect_Number==4)
+				options_counter= Flanger_Chorus_Interface(effect_Number,&chorus_structure.On);
+		}
+		if(options_counter==6)
+			*effect_Number=reset();
+		else if(options_counter==1)
+		{
+			if(*effect_Number==3) // flanger on/off
+			{
+				on_off_function(&flanger_structure.On);
+				flanger_init(&flanger_structure.opoznienie,&flanger_structure.lfo_frequency);
+			}
+			else  if(*effect_Number==4)// chorus on/off
+			{
+				on_off_function(&chorus_structure.On);
+				chorus_init(&chorus_structure.opoznienie,&chorus_structure.lfo_frequency);
+			}
+		}
+		else if(options_counter!=0 )
+				{
+
+					if(options_counter==2)
+					{
+						if(*effect_Number==3)
+						{
+							if(Local_Change_Parameter_Level(&flanger_structure.opoznienie,ms,effect_Number)==true)
+								flanger_init(&flanger_structure.opoznienie,&flanger_structure.lfo_frequency);
+						}
+						else if(*effect_Number==4)
+						{
+							if(Local_Change_Parameter_Level(&chorus_structure.opoznienie,ms,effect_Number)==true)
+								chorus_init(&chorus_structure.opoznienie,&chorus_structure.lfo_frequency);
+						}
+					}
+					else if (options_counter==3)
+					{
+						if(*effect_Number==3)
+						{
+							if(Local_Change_Parameter_Level(&flanger_structure.lfo_frequency,frequency,effect_Number)==true)
+								flanger_init(&flanger_structure.opoznienie,&flanger_structure.lfo_frequency);
+						}
+						else if(*effect_Number==4)
+						{
+							if(Local_Change_Parameter_Level(&chorus_structure.lfo_frequency,frequency,effect_Number)==true)
+								chorus_init(&chorus_structure.opoznienie,&chorus_structure.lfo_frequency);
+						}
+					}
+					else if (options_counter==4)
+					{
+						if(*effect_Number==3)
+						{
+							if(Local_Change_Parameter_Level(&flanger_structure.lfo_amplitude,volume,effect_Number)==true)
+								flanger_init(&flanger_structure.opoznienie,&flanger_structure.lfo_frequency);
+						}
+						else if(*effect_Number==4)
+						{
+							if(Local_Change_Parameter_Level(&chorus_structure.lfo_amplitude,volume,effect_Number)==true)
+								chorus_init(&chorus_structure.opoznienie,&chorus_structure.lfo_frequency);
+						}
+					}
+					else if (options_counter==5)
+					{
+						if(*effect_Number==3)
+						{
+							if(Local_Change_Parameter_Level(&flanger_structure.volume,volume,effect_Number)==true)
+								flanger_init(&flanger_structure.opoznienie,&flanger_structure.lfo_frequency);
+						}
+						else if(*effect_Number==4)
+						{
+							if(Local_Change_Parameter_Level(&chorus_structure.volume,volume,effect_Number)==true)
+								chorus_init(&chorus_structure.opoznienie,&chorus_structure.lfo_frequency);
+						}
+
+					}
+				}
+	}
+	else if(*effect_Number==5 )
+	{////////////////////////////// Distortion/////////////////////////////////
+		if(one_reset==0)
+			options_counter= Distorion_Interface(&distortion_structure.On);
+		if(options_counter==5)
+			*effect_Number=reset();
+		else if(options_counter==1)
+		{	on_off_function(&distortion_structure.On);
+
+		}
+		else if(options_counter!=0 )
+
+		{
+			if(options_counter==2)
+			{
+				Local_Change_Parameter_Level(&distortion_structure.gain,volume,effect_Number);
+			}
+			else if (options_counter==3)
+			{
+				Local_Change_Parameter_Level(&distortion_structure.mix,volume,effect_Number);
+			}
+			else if (options_counter==4)
+			{
+				Local_Change_Parameter_Level(&distortion_structure.volume,volume,effect_Number);
+			}
+		}
+	}
+	else if(*effect_Number==6 )
+		{////////////////////////////// Distortion/////////////////////////////////
+			if(one_reset==0)
+				options_counter= Tremolo_Interface(&tremolo_structure.On);
+			if(options_counter==5)
+				*effect_Number=reset();
+			else if(options_counter==1)
+			{
+				on_off_function(&tremolo_structure.On);
+				tremolo_init(&tremolo_structure.lfo_frequency);
+			}
+			else if(options_counter!=0 )
+
+			{
+				if(options_counter==2)
+				{
+					if(Local_Change_Parameter_Level(&tremolo_structure.lfo_frequency,frequency,effect_Number)==true)
+						tremolo_init(&tremolo_structure.lfo_frequency);
+				}
+				else if (options_counter==3)
+				{
+					/// kontekstowe menu do wyboru typu modulacji po wyborze modulacji jest back
+					if(one_reset==0)
+						{
+							reset();
+							one_reset=Tremolo_Modulation_Menu();
+
+						}
+						else if(one_reset==-1)
+						{
+							one_reset=Tremolo_Modulation_Menu();
+							if(one_reset==5)
+							{
+								one_reset=reset();
+							}
+							else if(one_reset!=-1)
+							{
+								one_reset=one_reset-1;
+								tremolo_structure.type=((typ_LFO)(one_reset));
+								tremolo_init(&tremolo_structure.lfo_frequency);
+								one_reset=reset();
+							}
+						}
+				}
+				else if (options_counter==4)
+				{
+					Local_Change_Parameter_Level(&tremolo_structure.volume,volume,effect_Number);
+				}
+			}
+		}
+	return *effect_Number;
+}
+
+void effect_chaine(Int16* input)
+{
+	if (tremolo_structure.On==true)
+		*input=tremolo(input,&tremolo_structure.volume,&tremolo_structure.type);
+	if (distortion_structure.On==true)
+		*input=distortion(input,&distortion_structure.gain,&distortion_structure.volume,&distortion_structure.mix);
+	if (flanger_structure.On==true)
+		*input=flanger(input,&flanger_structure.lfo_amplitude, &flanger_structure.volume);
+	if (chorus_structure.On==true)
+		*input=chorus(input,&chorus_structure.lfo_amplitude, &chorus_structure.volume);
+	if (delay_structure.On==true)
+		*input=delay(input,&delay_structure.gain);
+	if (delay2_structure.On==true)
+		*input=delay2(input,&delay2_structure.FF, &delay2_structure.BL, &delay2_structure.FB);
+
+}
+
+
+

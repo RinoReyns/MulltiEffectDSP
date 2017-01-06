@@ -1,0 +1,1 @@
+"./EffectsList.obj" "./main.obj" "./pushbuttons5515.obj" "./Delay/delay.obj" "./Delay2/delay2.obj" "./Distortion/distortion.obj" "./Flanger_Chorus/Chorus.obj" "./Flanger_Chorus/flanger.obj" "./Tremolo/tremolo.obj" "../C5535.cmd" -llibc.a -lcommon5535.lib -lCSLc55x5h.lib -l55xdsph.lib 

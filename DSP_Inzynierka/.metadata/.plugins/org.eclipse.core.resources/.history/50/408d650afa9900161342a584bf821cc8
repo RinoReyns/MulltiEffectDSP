@@ -1,0 +1,48 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Each subdirectory must supply rules for building sources it contributes
+Chorus.obj: ../Chorus.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C5500 Compiler'
+	"E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/bin/cl55" -v5515 --memory_model=huge -g --include_path="E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include" --include_path="C:/Users/Rino Reyns/Desktop/DSP_Inzynierka/common5535" --define=c5535 --display_error_number --diag_warning=225 --ptrdiff_size=32 --preproc_with_compile --preproc_dependency="Chorus.d" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+delay.obj: ../delay.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C5500 Compiler'
+	"E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/bin/cl55" -v5515 --memory_model=huge -g --include_path="E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include" --include_path="C:/Users/Rino Reyns/Desktop/DSP_Inzynierka/common5535" --define=c5535 --display_error_number --diag_warning=225 --ptrdiff_size=32 --preproc_with_compile --preproc_dependency="delay.d" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+delay2.obj: ../delay2.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C5500 Compiler'
+	"E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/bin/cl55" -v5515 --memory_model=huge -g --include_path="E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include" --include_path="C:/Users/Rino Reyns/Desktop/DSP_Inzynierka/common5535" --define=c5535 --display_error_number --diag_warning=225 --ptrdiff_size=32 --preproc_with_compile --preproc_dependency="delay2.d" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+distortion.obj: ../distortion.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C5500 Compiler'
+	"E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/bin/cl55" -v5515 --memory_model=huge -g --include_path="E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include" --include_path="C:/Users/Rino Reyns/Desktop/DSP_Inzynierka/common5535" --define=c5535 --display_error_number --diag_warning=225 --ptrdiff_size=32 --preproc_with_compile --preproc_dependency="distortion.d" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+flanger.obj: ../flanger.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C5500 Compiler'
+	"E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/bin/cl55" -v5515 --memory_model=huge -g --include_path="E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include" --include_path="C:/Users/Rino Reyns/Desktop/DSP_Inzynierka/common5535" --define=c5535 --display_error_number --diag_warning=225 --ptrdiff_size=32 --preproc_with_compile --preproc_dependency="flanger.d" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+main.obj: ../main.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C5500 Compiler'
+	"E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/bin/cl55" -v5515 --memory_model=huge -g --include_path="E:/Zainstalowane Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include" --include_path="C:/Users/Rino Reyns/Desktop/DSP_Inzynierka/common5535" --define=c5535 --display_error_number --diag_warning=225 --ptrdiff_size=32 --preproc_with_compile --preproc_dependency="main.d" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+
