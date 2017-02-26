@@ -9,11 +9,11 @@
 #include "usbstk5515.h"
 #include <stdlib.h>
 
-#define N 725
+#define F 725
 
 int delay_flanger_w_probkach=0;
 int licznik=0;
-int tablica_opoznienia_flanger[N];
+int tablica_opoznienia_flanger[F];
 signed long temp2_f=0;
 signed long temp3=0;
 
@@ -24,9 +24,10 @@ DATA y = 0;
 
 void flanger_init(char* opoznienie, char* lfo_frequency) 
 {
-	omega=(int)((22368L * ((int)(*lfo_frequency))) >> 14);
 	short int* i_f=(short int*)malloc(11);
-	for ( *i_f = 0 ; *i_f < N ; *i_f=*i_f+1)
+	omega=(int)((22368L * ((int)(*lfo_frequency))) >> 14);
+	
+	for ( *i_f = 0 ; *i_f < F ; *i_f=*i_f+1)
 	{
 		tablica_opoznienia_flanger[*i_f] = 0;
 	}
