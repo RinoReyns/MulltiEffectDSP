@@ -36,15 +36,15 @@ struct falnger_chorus_structure
 	char lfo_frequency;
 	char lfo_amplitude;
 	char volume;
-}	flanger_structure={false,5,1,100,100},chorus_structure={false,24,1,40,100};
+}	flanger_structure={false,5,1,100,100},chorus_structure={false,10,1,40,100};
 
 struct distortion_structure
 {
 	bool On;
-	char gain;
+	char gain; // 1-10
 	char mix;
 	char volume;
-}	distortion_structure={false,20,50,80};
+}	distortion_structure={false,3,20,50};
 
 struct tremolo_structure
 {

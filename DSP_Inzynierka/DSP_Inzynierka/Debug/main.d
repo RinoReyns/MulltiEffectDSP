@@ -1,47 +1,47 @@
 # FIXED
 
 main.obj: ../main.c
-main.obj: C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/usbstk5515.h
-main.obj: C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/usbstk5515_led.h
-main.obj: C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/aic3204.h
-main.obj: C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/PLL.h
-main.obj: C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/bargraph.h
-main.obj: C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/oled.h
+main.obj: ../usbstk5515.h
+main.obj: ../usbstk5515_led.h
+main.obj: ../aic3204.h
+main.obj: ../PLL.h
+main.obj: ../bargraph.h
+main.obj: ../oled.h
 main.obj: ../pushbuttons.h
-main.obj: C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/stereo.h
-main.obj: E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/math.h
-main.obj: E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/float.h
-main.obj: E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/access.h
-main.obj: E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/elfnames.h
-main.obj: E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/mathf.h
-main.obj: E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/mathl.h
-main.obj: E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/unaccess.h
-main.obj: E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/stdio.h
-main.obj: E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/linkage.h
-main.obj: E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/stdarg.h
-main.obj: C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/dsplib.h
-main.obj: C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/tms320.h
+main.obj: ../stereo.h
+main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/math.h
+main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/float.h
+main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/access.h
+main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/elfnames.h
+main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/mathf.h
+main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/mathl.h
+main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/unaccess.h
+main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/stdio.h
+main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/linkage.h
+main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/stdarg.h
+main.obj: ../dsplib.h
+main.obj: C:/Users/Rino\ Reyns/Documents/MulltiEffectDSP/DSP_Inzynierka/common5535/tms320.h
 main.obj: ../EffectsList.h
 
 ../main.c: 
-C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/usbstk5515.h: 
-C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/usbstk5515_led.h: 
-C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/aic3204.h: 
-C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/PLL.h: 
-C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/bargraph.h: 
-C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/oled.h: 
+../usbstk5515.h: 
+../usbstk5515_led.h: 
+../aic3204.h: 
+../PLL.h: 
+../bargraph.h: 
+../oled.h: 
 ../pushbuttons.h: 
-C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/stereo.h: 
-E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/math.h: 
-E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/float.h: 
-E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/access.h: 
-E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/elfnames.h: 
-E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/mathf.h: 
-E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/mathl.h: 
-E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/unaccess.h: 
-E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/stdio.h: 
-E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/linkage.h: 
-E:/Zainstalowane\ Programy/ti/ccsv6/tools/compiler/c5500_4.4.1/include/stdarg.h: 
-C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/dsplib.h: 
-C:/Users/Rino\ Reyns/Desktop/DSP_Inzynierka/common5535/tms320.h: 
+../stereo.h: 
+C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/math.h: 
+C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/float.h: 
+C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/access.h: 
+C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/elfnames.h: 
+C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/mathf.h: 
+C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/mathl.h: 
+C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/unaccess.h: 
+C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/stdio.h: 
+C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/linkage.h: 
+C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/stdarg.h: 
+../dsplib.h: 
+C:/Users/Rino\ Reyns/Documents/MulltiEffectDSP/DSP_Inzynierka/common5535/tms320.h: 
 ../EffectsList.h: 

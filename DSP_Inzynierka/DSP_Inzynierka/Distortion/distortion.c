@@ -46,9 +46,9 @@ Int16 dist_readFromLUT(Int16 input,const int* yLUT)
 
 Int16 distortion(Int16* sygnal_wejsciowy,char* gain, char* volume, char* mix)
 {
-		if(*sygnal_wejsciowy>=-80 && *sygnal_wejsciowy<1000)
+		if(*sygnal_wejsciowy>=-60 && *sygnal_wejsciowy<1000)
 			*sygnal_wejsciowy=*sygnal_wejsciowy+2000;
-		else if(*sygnal_wejsciowy<=-98 && *sygnal_wejsciowy>800)
+		else if(*sygnal_wejsciowy<=-122 && *sygnal_wejsciowy>800)
 				*sygnal_wejsciowy=*sygnal_wejsciowy-2000;
 
 		*out=(*sygnal_wejsciowy);
