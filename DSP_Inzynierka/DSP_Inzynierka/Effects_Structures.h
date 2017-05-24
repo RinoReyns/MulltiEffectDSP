@@ -9,14 +9,14 @@
 #ifndef EFFECTS_STRUCTURES_H_
 #define EFFECTS_STRUCTURES_H_
 
-typedef enum { ms, volume, frequency } kind_of_parameter; /// ms- delay-time, volume - gain(1-100) and volume(0-1) normalized during init of effect
+typedef enum { ms, volume, frequency, ds } kind_of_parameter; /// ms- delay-time, volume - gain(1-100) and volume(0-1) normalized during init of effect, ds-for 1 number step
 struct delay_structure
 {
 	bool On;
 	short int opoznienie;
 	char gain;
 
-}  delay_structure={false,600,100};
+}  delay_structure={false,600,90};
 
 
 struct delay2_structure
@@ -36,7 +36,7 @@ struct falnger_chorus_structure
 	char lfo_frequency;
 	char lfo_amplitude;
 	char volume;
-}	flanger_structure={false,5,1,100,100},chorus_structure={false,10,1,40,100};
+}	flanger_structure={false,5,1,100,90},chorus_structure={false,5,1,40,90};
 
 struct distortion_structure
 {
@@ -44,7 +44,7 @@ struct distortion_structure
 	char gain; // 1-10
 	char mix;
 	char volume;
-}	distortion_structure={false,3,20,50};
+}	distortion_structure={false,2,20,30};
 
 struct tremolo_structure
 {

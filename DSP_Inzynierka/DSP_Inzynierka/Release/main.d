@@ -20,6 +20,8 @@ main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/stdio.h
 main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/linkage.h
 main.obj: C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/stdarg.h
 main.obj: ../dsplib.h
+main.obj: C:/Users/Rino\ Reyns/Documents/MulltiEffectDSP/DSP_Inzynierka/common5535/tms320.h
+main.obj: ../EffectsList.h
 
 ../main.c: 
 ../usbstk5515.h: 
@@ -41,3 +43,5 @@ C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/stdio.h:
 C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/linkage.h: 
 C:/ti/ccsv7/tools/compiler/c5500_4.4.1/include/stdarg.h: 
 ../dsplib.h: 
+C:/Users/Rino\ Reyns/Documents/MulltiEffectDSP/DSP_Inzynierka/common5535/tms320.h: 
+../EffectsList.h: 

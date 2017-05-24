@@ -113,13 +113,13 @@ char list_Of_Effects()
 char Delay_Interface(bool *state)
 {
 
-	krok_interface = pushbuttons_read(4);
+	krok_interface = pushbuttons_read(3);
 
-	if((krok_interface==4) && (poprzedni_krok_interface==1))
+	if((krok_interface==3) && (poprzedni_krok_interface==1))
 		return poprzedni_krok_interface;
 
 		if(krok_interface<poprzedni_krok_interface )
-			if( (krok_interface!=1) || (poprzedni_krok_interface!=4))
+			if( (krok_interface!=1) || (poprzedni_krok_interface!=3))
 				return poprzedni_krok_interface;
 
 		if(krok_interface != poprzedni_krok_interface )
@@ -135,16 +135,16 @@ char Delay_Interface(bool *state)
 			 }
 			 else if (krok_interface==2)
 			 {
-				 	 Display_Function("- delay time          ","  delay volume          ");
+				 	 Display_Function("- delay time          ","  back             ");
 				 	 poprzedni_krok_interface = krok_interface;
 			 }
-			 else if (krok_interface==3)
+			/* else if (krok_interface==3)
 			 {
 				 	 	 Display_Function("- delay volume          ","  back             ");
 				 	 	 poprzedni_krok_interface = krok_interface;
-			 }
+			 }*/
 
-			 else if (krok_interface==4)
+			 else if (krok_interface==3)
 			 {
 				 if(*state==false)
 					 Display_Function("- back            ","  turn on          ");
@@ -161,13 +161,13 @@ char Delay_Interface(bool *state)
 char Delay2_Interface(bool* state)
 {
 
-	krok_interface= pushbuttons_read(6);
+	krok_interface= pushbuttons_read(3);
 
-	if((krok_interface==6) && (poprzedni_krok_interface==1))
+	if((krok_interface==3) && (poprzedni_krok_interface==1))
 		return poprzedni_krok_interface;
 
 		if(krok_interface<poprzedni_krok_interface )
-			if( (krok_interface!=1) || (poprzedni_krok_interface!=6))
+			if( (krok_interface!=1) || (poprzedni_krok_interface!=3))
 				return poprzedni_krok_interface;
 
 		if(krok_interface != poprzedni_krok_interface)
@@ -183,11 +183,11 @@ char Delay2_Interface(bool* state)
 
 			 else if (krok_interface==2)
 			 {
-				 Display_Function("- delay time          ","  feedforward          ");
+				 Display_Function("- delay time          ","  back                 ");
 				 poprzedni_krok_interface = krok_interface;
 
 			 }
-			 else if (krok_interface==3)
+			/* else if (krok_interface==3)
 			 {
 				 Display_Function("- feedforward          ","  blend             ");
 				 poprzedni_krok_interface = krok_interface;
@@ -204,8 +204,8 @@ char Delay2_Interface(bool* state)
 			 {
 				 Display_Function("- feedbackward          ","  back             ");
 				 poprzedni_krok_interface = krok_interface;
-			 }
-			 else if (krok_interface==6)
+			 }*/
+			 else if (krok_interface==3)
 			 {
 				 if(*state==false)
 					 Display_Function("- back            ","  turn on          ");
@@ -220,13 +220,13 @@ char Delay2_Interface(bool* state)
 char  Flanger_Chorus_Interface(char* effect_Number,bool* state)
 {
 
-	krok_interface= pushbuttons_read(6);
+	krok_interface= pushbuttons_read(3);
 
-	if((krok_interface==6) && (poprzedni_krok_interface==1))
+	if((krok_interface==3) && (poprzedni_krok_interface==1))
 		return poprzedni_krok_interface;
 
 	if(krok_interface<poprzedni_krok_interface )
-		if( (krok_interface!=1) || (poprzedni_krok_interface!=6))
+		if( (krok_interface!=1) || (poprzedni_krok_interface!=3))
 			return poprzedni_krok_interface;
 
 	if(krok_interface != poprzedni_krok_interface)
@@ -242,10 +242,10 @@ char  Flanger_Chorus_Interface(char* effect_Number,bool* state)
 		}
 		else if (krok_interface==2)
 		{
-		 	 Display_Function("- delay time          ","  lfo frequency        ");
+		 	 Display_Function("- delay time          ","  back          ");
 		 	 poprzedni_krok_interface = krok_interface;
 		}
-		else if (krok_interface==3)
+		/*else if (krok_interface==3)
 		{
 			Display_Function("- lfo frequency          ","  lfo amplitude          ");
 		 	 poprzedni_krok_interface = krok_interface;
@@ -268,8 +268,8 @@ char  Flanger_Chorus_Interface(char* effect_Number,bool* state)
 				Display_Function("- chorus volume          ","  back             ");
 			poprzedni_krok_interface = krok_interface;
 
-		}
-		else if (krok_interface==6)
+		}*/
+		else if (krok_interface==3)
 		{
 			if(*state==false)
 				Display_Function("- back            ","  turn on          ");
@@ -284,13 +284,13 @@ char  Flanger_Chorus_Interface(char* effect_Number,bool* state)
 char Distorion_Interface(bool* state)
 {
 
-	krok_interface = pushbuttons_read(5);
+	krok_interface = pushbuttons_read(3);
 
-	if((krok_interface==5) && (poprzedni_krok_interface==1))
+	if((krok_interface==3) && (poprzedni_krok_interface==1))
 		return poprzedni_krok_interface;
 
 		if(krok_interface<poprzedni_krok_interface )
-			if( (krok_interface!=1) || (poprzedni_krok_interface!=5))
+			if( (krok_interface!=1) || (poprzedni_krok_interface!=3))
 				return poprzedni_krok_interface;
 
 
@@ -307,11 +307,11 @@ char Distorion_Interface(bool* state)
 			}
 			else if (krok_interface==2)
 			{
-				Display_Function("- gain level          ","  mix        ");
+				Display_Function("- gain level          ","  back                 ");
 				poprzedni_krok_interface = krok_interface;
 
 			}
-			else if (krok_interface==3)
+		/*	else if (krok_interface==3)
 			{
 				Display_Function("- mix              ","  volume   ");
 				poprzedni_krok_interface = krok_interface;
@@ -321,8 +321,8 @@ char Distorion_Interface(bool* state)
 			{
 				Display_Function("- volume             ","  back             ");
 				poprzedni_krok_interface = krok_interface;
-			}
-			else if (krok_interface==5)
+			}*/
+			else if (krok_interface==3)
 			{
 				if(*state==false)
 					Display_Function("- back            ","  turn on          ");
@@ -337,13 +337,13 @@ char Distorion_Interface(bool* state)
 char Tremolo_Interface(bool* state)
 {
 
-	krok_interface = pushbuttons_read(5);
+	krok_interface = pushbuttons_read(3);
 
-	if((krok_interface==5) && (poprzedni_krok_interface==1))
+	if((krok_interface==3) && (poprzedni_krok_interface==1))
 		return poprzedni_krok_interface;
 
 		if(krok_interface<poprzedni_krok_interface )
-			if( (krok_interface!=1) || (poprzedni_krok_interface!=5))
+			if( (krok_interface!=1) || (poprzedni_krok_interface!=3))
 				return poprzedni_krok_interface;
 
 
@@ -360,10 +360,10 @@ char Tremolo_Interface(bool* state)
 			}
 			else if (krok_interface==2)
 			{
-				Display_Function("- lfo frequency          ","  modulation type        ");
+				Display_Function("- lfo frequency          ","  back                 ");
 				poprzedni_krok_interface = krok_interface;
 
-			}
+			}/*
 			else if (krok_interface==3)
 			{
 				Display_Function("- modulation type        ","  volume              ");
@@ -374,8 +374,8 @@ char Tremolo_Interface(bool* state)
 			{
 				Display_Function("- volume                 ","  back             ");
 				poprzedni_krok_interface = krok_interface;
-			}
-			else if (krok_interface==5)
+			}*/
+			else if (krok_interface==3)
 			{
 				if(*state==false)
 					Display_Function("- back            ","  turn on          ");
@@ -474,6 +474,8 @@ char  Change_Parameter_Level()
 
 bool  Local_Change_Parameter_Level(char* paremeter_value, kind_of_parameter kind, char* effect_Number)
 {
+	char* changed_value=(char*)malloc(7);
+	char *napis1=(char *) malloc(7);
 
 	if(one_reset==0)
 	{
@@ -502,9 +504,11 @@ bool  Local_Change_Parameter_Level(char* paremeter_value, kind_of_parameter kind
 			{
 				reset();
 				one_reset=-1;
+				free(napis1);
+				free(changed_value);
 				return false;
 			}
-			char* changed_value=(char*)malloc(7);
+
 				*changed_value=*paremeter_value;
 
 			//////////// UP//////////////////////////////
@@ -556,7 +560,7 @@ bool  Local_Change_Parameter_Level(char* paremeter_value, kind_of_parameter kind
 					}
 				}
 
-			char *napis1=(char *) malloc(7);
+
 			if(kind==ms)
 				sprintf(napis1, "%4d ms             ", *paremeter_value); // ms ró¿ny w zale¿noœci od efektu
 			else if(kind==volume)
@@ -571,10 +575,11 @@ bool  Local_Change_Parameter_Level(char* paremeter_value, kind_of_parameter kind
 
 			if(*changed_value!=*paremeter_value)
 			{
+				free(napis1);
 				free(changed_value);
 				return true;
 			}
-			free(changed_value);
+
 		}
 		else if(krok_interface<poprzedni_krok_interface)
 			{
@@ -583,12 +588,15 @@ bool  Local_Change_Parameter_Level(char* paremeter_value, kind_of_parameter kind
 			}
 	}
 
+	free(napis1);
+	free(changed_value);
 	return false;
 }
 
 bool  Local_Change_Parameter_Level_For_Delay(short int* paremeter_value)
 {
-
+short int* changed_value=(short int*)malloc(15);
+char *napis1=(char *) malloc(15);
 	if(one_reset==0)
 	{
 		reset();
@@ -613,12 +621,14 @@ bool  Local_Change_Parameter_Level_For_Delay(short int* paremeter_value)
 		{
 			if(poprzedni_krok_interface==1 && krok_interface==71)
 			{
+				free(napis1);
+				free(changed_value);
 				reset();
 				one_reset=-1;
 				return false;
 			}
 
-			short int* changed_value=(short int*)malloc(15);
+
 			*changed_value=*paremeter_value;
 
 			//////////// UP//////////////////////////////
@@ -633,13 +643,14 @@ bool  Local_Change_Parameter_Level_For_Delay(short int* paremeter_value)
 					if((*paremeter_value)!=0)
 						*paremeter_value=(*paremeter_value)-10;
 				}
-			char *napis1=(char *) malloc(15);
+
 			sprintf(napis1, "%3d ms             ",(char) (*paremeter_value)); // ms ró¿ny w zale¿noœci od efektu
 			oled_display_message(napis1,"                  ");
 			free(napis1);
 			poprzedni_krok_interface = krok_interface;
 			if(*changed_value!=*paremeter_value)
 			{
+				free(napis1);
 				free(changed_value);
 				return true;
 			}
@@ -651,6 +662,8 @@ bool  Local_Change_Parameter_Level_For_Delay(short int* paremeter_value)
 				one_reset=-1;
 			}
 	}
+	free(napis1);
+	free(changed_value);
 	return false;
 }
 
@@ -682,14 +695,14 @@ char chosen_Effect(char* effect_Number)
 		////////////////////////////// Delay/////////////////////////////////
 		if(one_reset==0)
 			options_counter=Delay_Interface(&delay_structure.On);// wybrana opcja
-		if(options_counter==4)
+		if(options_counter==3)
 			*effect_Number=reset();
 		else if(options_counter==1)
 		{
 			on_off_function(&delay_structure.On);
 			delay_init(&delay_structure.opoznienie);
 		}
-		else if(options_counter!=0 )
+		/*else if(options_counter!=0 )
 		{
 			if(options_counter==2)
 			{
@@ -701,7 +714,7 @@ char chosen_Effect(char* effect_Number)
 				if(Local_Change_Parameter_Level(&delay_structure.gain,volume,effect_Number)==true)
 					delay_init(&delay_structure.opoznienie);
 			}
-		}
+		}*/
 	}
 
 	else if(*effect_Number==2)
@@ -709,14 +722,14 @@ char chosen_Effect(char* effect_Number)
 		////////////////////////////// Delay2/////////////////////////////////
 		if(one_reset==0)
 			options_counter=Delay2_Interface(&delay2_structure.On);
-		if(options_counter==6)
+		if(options_counter==3)
 			*effect_Number=reset();
 		else if(options_counter==1)
 		{
 			on_off_function(&delay2_structure.On);
 			delay2_init(&delay2_structure.opoznienie);
 		}
-		else if(options_counter!=0 )
+		/*else if(options_counter!=0 )
 		{
 			if(options_counter==2)
 			{
@@ -739,7 +752,7 @@ char chosen_Effect(char* effect_Number)
 				if(Local_Change_Parameter_Level(&delay2_structure.FB,volume,effect_Number)==true)
 					delay2_init(&delay2_structure.opoznienie);
 			}
-		}
+		}*/
 	}
 
 	else if(*effect_Number==3 || *effect_Number==4 )
@@ -751,7 +764,7 @@ char chosen_Effect(char* effect_Number)
 			else if(*effect_Number==4)
 				options_counter= Flanger_Chorus_Interface(effect_Number,&chorus_structure.On);
 		}
-		if(options_counter==6)
+		if(options_counter==3)
 			*effect_Number=reset();
 		else if(options_counter==1)
 		{
@@ -766,7 +779,7 @@ char chosen_Effect(char* effect_Number)
 				chorus_init(&chorus_structure.opoznienie,&chorus_structure.lfo_frequency);
 			}
 		}
-		else if(options_counter!=0 )
+		/*else if(options_counter!=0 )
 				{
 
 					if(options_counter==2)
@@ -822,19 +835,19 @@ char chosen_Effect(char* effect_Number)
 						}
 
 					}
-				}
+				}*/
 	}
 	else if(*effect_Number==5 )
 	{////////////////////////////// Distortion/////////////////////////////////
 		if(one_reset==0)
 			options_counter= Distorion_Interface(&distortion_structure.On);
-		if(options_counter==5)
+		if(options_counter==3)
 			*effect_Number=reset();
 		else if(options_counter==1)
 		{	on_off_function(&distortion_structure.On);
 
 		}
-		else if(options_counter!=0 )
+	/*	else if(options_counter!=0 )
 
 		{
 			if(options_counter==2)
@@ -849,20 +862,20 @@ char chosen_Effect(char* effect_Number)
 			{
 				Local_Change_Parameter_Level(&distortion_structure.volume,volume,effect_Number);
 			}
-		}
+		}*/
 	}
 	else if(*effect_Number==6 )
 		{////////////////////////////// Distortion/////////////////////////////////
 			if(one_reset==0)
 				options_counter= Tremolo_Interface(&tremolo_structure.On);
-			if(options_counter==5)
+			if(options_counter==3)
 				*effect_Number=reset();
 			else if(options_counter==1)
 			{
 				on_off_function(&tremolo_structure.On);
 				tremolo_init(&tremolo_structure.lfo_frequency);
 			}
-			else if(options_counter!=0 )
+			/*else if(options_counter!=0 )
 
 			{
 				if(options_counter==2)
@@ -899,7 +912,7 @@ char chosen_Effect(char* effect_Number)
 				{
 					Local_Change_Parameter_Level(&tremolo_structure.volume,volume,effect_Number);
 				}
-			}
+			}*/
 		}
 	return *effect_Number;
 }
